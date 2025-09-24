@@ -102,18 +102,22 @@ class DutyAllocationPage {
         return cy.get('[aria-id="ControlDatePanel_e89b585eedc7_51f520"]', {timeout: 2000})
     }
 
+    // حذف فیلتر
     removeFiltersButton() {
         return cy.get('button[aria-id="ControlButton_ca9a8bfabd67_6acb28"][aria-type="BUTTON"]', {timeout: 2000})
     }
 
+    // جستجو
     searchButton() {
         return cy.get('button[aria-id="ControlButton_7aec8e5659c5_4e227e"][aria-type="BUTTON"]', {timeout: 2000})
     }
 
+    // پیشرفته
     advancedButton() {
         return cy.get('[aria-id="ControlIcon_9c7dcf0e1a62_d851e3"]', {timeout: 2000})
     }
 
+    // ویرایش
     editButton() {
         return cy.get('button[aria-id="ControlButton_6e444c4d33c3_d6eb06"][aria-type="BUTTON"]', {timeout: 2000})
     }
