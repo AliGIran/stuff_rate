@@ -2,22 +2,22 @@ class DutyAllocationPage {
 
     // locators ******************************************************************************
 
-    // طبقه بندی سطح 1
+    // طبقه‌بندی سطح 1
     level1ClassificationElement() {
         return cy.get('[name="ControlDropDownList_e206d308c0de_c829ab"]', {timeout: 2000})
     }
 
-    // طبقه بندی سطح 2
+    // طبقه‌بندی سطح 2
     level2ClassificationElement() {
         return cy.get('[name="ControlDropDownList_e0da2c413611_12a2ce"]', {timeout: 2000})
     }
 
-    // طبقه بندی سطح 3
+    // طبقه‌بندی سطح 3
     level3ClassificationElement() {
         return cy.get('[name="ControlDropDownList_908e035c6cdd_267545"]', {timeout: 2000})
     }
 
-    // طبقه بندی سطح 4
+    // طبقه‌بندی سطح 4
     level4ClassificationElement() {
         return cy.get('[name="ControlDropDownList_35bff07f42bd_4b2322"]', {timeout: 2000})
     }
@@ -89,7 +89,7 @@ class DutyAllocationPage {
 
     //  دارای مجوز
     licencedCheckbox() {
-        return cy.get('input[name="ControlCheckBox_0472c1845b0e_3aaa9d"][type="checkbox]', {timeout: 2000})
+        return cy.get('input[name="ControlCheckBox_0472c1845b0e_3aaa9d"][type="checkbox"]', {timeout: 2000})
     }
 
     // مشمولیت
@@ -137,7 +137,6 @@ class DutyAllocationPage {
         el.children().find('button', {timeout: 2000})
     }
 
-
     enterTitleDescription(description) {
         this.titleDescriptionInput().type(description, {delay: 150})
     }
@@ -173,4 +172,4 @@ class DutyAllocationPage {
 }
 
 // export the object
-module.exports = new LoginPage();
+module.exports = new DutyAllocationPage();

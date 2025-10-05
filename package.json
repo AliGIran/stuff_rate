@@ -1,4 +1,8 @@
 {
   "name": "cypress_project",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.2.0",
+    "cypress": "^15.3.0"
+  }
 }
