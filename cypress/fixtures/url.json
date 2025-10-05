@@ -1,0 +1,10 @@
+{
+  "کالا": {
+    "دارای نرخ": "commodity-id/1",
+    "بدون نرخ": "commodity_allocation/2"
+  },
+  "خدمات": {
+    "دارای نرخ": "duty-id/3",
+    "بدون نرخ": "duty_allocation/4"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "username": "admin",
+  "password": "12345678",
+  "url":"http://stuff-rate.alpha.nta.local/",
+  "apiSend":"http://simulator.beta.nta.local/invoice/send",
+  "apiGet":"http://simulator.beta.nta.local/invoice/get-invoice/",
+  "workFolderapiUrl":"http://integration-proxy.beta.nta.local/api/v2/request/status",
+  "apiToken":"master.nta.local/api/uaa/web/oauth/v1/token",
+  "apiIncreasLimit6":"http://taxcore.master.nta.local/m/api/ledger-article6/init/manual?period=",
+  "creatWorkeFolderApiUrl":"http://taxinquiry.beta.nta.local/Tax/Inquiry/Upload/Register",
+  "saveAcceptorsByFollowCodeApiUrl":"http://taxinquiry.beta.nta.local/Tax/Inquiry/Upload/AcceptorsByFollowCode",
+  "creatWorkeFolderFinallApiUrl":"https://integration-proxy.beta.nta.local/api/v2/request",
+  "delayAPITime" : 10000
+}
