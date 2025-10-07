@@ -1,3 +1,5 @@
+import dutyAllocations from "../../e2e/pages/duty_allocation_page";
+
 // commonFunction.js
 // This file contains the common functions that are used in other test files
 export default {
@@ -380,11 +382,10 @@ export default {
 
 
     // کلیک برای باز شدن لیست دان و تایپ گزینه مورد نظر
-    selectFromDropdown(optionText) {
-        cy.get('input[role="combobox"]').click({force: true});
-        //  تایپ کردن نام گزینه مورد نظر
-        cy.get('input[role="combobox"]').type(optionText, {delay: 100});
-        cy.get('ul[role="listbox"] li').contains(optionText).click({force: true});
+    selectFromDropdown(element, optionText) {
+        element.click({force: true});
+        element.children().find('input').type(optionText, {delay: 150});
+        dutyAllocations.comboList().children().contains(optionText).click({force: true});
     },
 
 
@@ -400,7 +401,7 @@ export default {
                     el.clear().type(finalValue);
                 } else {
                     const el = cy.wrap($label);
-                        el.parent().find('input').clear().type(finalValue);
+                    el.parent().find('input').clear().type(finalValue);
                 }
             });
     },
@@ -468,5 +469,9 @@ export default {
             .find(child)
             .should('have.length', num);
     },
+
+    typeInInput(element, myText) {
+        element.type(myText, {delay: 150});
+    }
 
 };

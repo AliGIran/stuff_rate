@@ -24,22 +24,22 @@ class DutyAllocationPage {
 
     // سرفصل
     titleElement() {
-        return cy.get('input[name="ControlDropDownList_6484daea8832_778dd3"]', {timeout: 2000})
+        return cy.get('[name="ControlDropDownList_6484daea8832_778dd3"]', {timeout: 2000})
     }
 
     // شرح سرفصل
     titleDescriptionInput() {
-        return cy.get('input[name="ControlTextBox_6ee5e6d5f473_506448"]', {timeout: 2000})
+        return cy.get('[name="ControlTextBox_6ee5e6d5f473_506448"]', {timeout: 2000})
     }
 
     // شناسه خدمت
     dutyIdInput() {
-        return cy.get('input[name="ControlTextBox_092fea7ba3e7_e3391e"]', {timeout: 2000})
+        return cy.get('[name="ControlTextBox_092fea7ba3e7_e3391e"]', {timeout: 2000})
     }
 
     // شرح شناسه خدمت
     dutyIDDescriptionInput() {
-        return cy.get('input[name="ControlTextBox_8157da7b046b_d05ef2"]', {timeout: 2000})
+        return cy.get('[name="ControlTextBox_8157da7b046b_d05ef2"]', {timeout: 2000})
     }
 
     // وضعیت
@@ -49,7 +49,7 @@ class DutyAllocationPage {
 
     // نوع شناسه
     idTypeElement() {
-        return cy.get('[name="ControlDropDownList_4dc736495688_1b1cca"]', {timeout: 2000})
+        return cy.get('[name="ControlDropDownList_bebf23edf683_f713bf"]', {timeout: 2000})
     }
 
     // نوع کالا
@@ -57,14 +57,19 @@ class DutyAllocationPage {
         return cy.get('[name="ControlDropDownList_fa95dcf31153_4ec376"]', {timeout: 2000})
     }
 
+    // نوع خدما
+    dutyTypeElement() {
+        return cy.get('[name="ControlDropDownList_fa95dcf31153_4ec376"]', {timeout: 2000})
+    }
+
     // سطح تایید
-    acceptanceTypeElement() {
-        return cy.get('[name="ControlDropDownList_4dc736495688_1b1cca"]', {timeout: 2000})
+    approvalLevelElement() {
+        return cy.get('[name="ControlDropDownList_350ed8ee930c_122974"]', {timeout: 2000})
     }
 
     // نرخ ارزش افزوده
     taxRateInput() {
-        return cy.get('input[name="ControlTextBox_cc6c8343e9f3_e64cb0"]', {timeout: 2000})
+        return cy.get('[name="ControlTextBox_cc6c8343e9f3_e64cb0"]', {timeout: 2000})
     }
 
     // بند قانونی
@@ -89,7 +94,7 @@ class DutyAllocationPage {
 
     //  دارای مجوز
     licencedCheckbox() {
-        return cy.get('input[name="ControlCheckBox_0472c1845b0e_3aaa9d"][type="checkbox"]', {timeout: 2000})
+        return cy.get('[name="ControlCheckBox_0472c1845b0e_3aaa9d"][type="checkbox"]', {timeout: 2000})
     }
 
     // مشمولیت
@@ -122,8 +127,16 @@ class DutyAllocationPage {
         return cy.get('button[aria-id="ControlButton_6e444c4d33c3_d6eb06"][aria-type="BUTTON"]', {timeout: 2000})
     }
 
+    // لیست گزینه
+    comboList() {
+        return cy.get('[role="presentation"]', {timeout: 2000})
+    }
 
     // actions ******************************************************************************
+
+    typeInInput(element, myText){
+        element.type(myText);
+    }
 
     checkDropDownLabel(el, label) {
         el.children().find(label, {timeout: 2000})
@@ -133,8 +146,8 @@ class DutyAllocationPage {
         el.children().find('input', {timeout: 2000}).type(text, {delay: 2000})
     }
 
-    openDropDown(el) {
-        el.children().find('button', {timeout: 2000})
+    clickElement(el) {
+        el.click()
     }
 
     enterTitleDescription(description) {
@@ -168,6 +181,7 @@ class DutyAllocationPage {
     clickEditButton() {
         this.editButton().click({force: true})
     }
+
 
 }
 
