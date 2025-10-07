@@ -1,0 +1,17 @@
+{
+  "manager": {
+    "firstName": "مدیریت",
+    "lastName": "سازمان",
+    "NationalID": "5579923031",
+    "Mobile": "09121111111",
+    "save": "1"
+  },
+
+  "employee": {
+    "firstName": "کارمند",
+    "lastName": "سازمان",
+    "NationalID": "5579930161",
+    "Mobile": "09121111111",
+    "save": "1"
+  }
+}

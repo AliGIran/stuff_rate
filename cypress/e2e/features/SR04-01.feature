@@ -3,10 +3,7 @@ Feature:  Stuff rate - Duty allocation
   @smoke
   @invoice
   @domesticSale
+  @manager-login
   Scenario: SR-04-01 Assert that elements are available and functional
 
-    Given I open web site
-    Then loginUser
-      | type       | value      |
-      | NationalID | 5579923031 |
-      | save       | 1          |
+    When goto 'url.خدمات.بدون نرخ'

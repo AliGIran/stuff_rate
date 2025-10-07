@@ -31,8 +31,6 @@ module.exports = defineConfig({
         trashAssetsBeforeRuns: false,
         browser: "chrome",
         specPattern: 'cypress/e2e/features/*.feature',
-        chromeWebSecurity: false,
-
         reporter: 'mochawesome',
         reporterOptions: {
             reportDir: 'cypress/reports',

@@ -2,73 +2,186 @@
 // This file contains the common functions that are used in other test files
 export default {
     //برای لاگین در سامانه از طریق یوزرهای ساخته شده در طی تست ازین تابع استفاده می کنیم
-    loginUserwithdynamicdata(inputs) {
+    // loginUserWithDynamicData(inputs) {
+    //     cy.wait(1000);
+    //     for (const input of inputs) {
+    //         const {type, value} = input;
+    //
+    //         if (!value) continue;
+    //
+    //         switch (type) {
+    //             case 'firstName':
+    //                 const fName = cy.get('#FName');
+    //                 fName.clear().click().type(value);
+    //                 break;
+    //             case 'lastName':
+    //                 const lName = cy.get('#LName');
+    //                 lName.clear().click().type(value);
+    //                 break;
+    //             case 'NationalID':
+    //                 const nationalID = cy.get('#NationalID');
+    //                 nationalID.clear().click().type(value);
+    //                 break;
+    //             case 'Mobile':
+    //                 const mobile = cy.get('#Mobile');
+    //                 mobile.clear().click().type(value);
+    //                 break;
+    //             case 'RegisterNumber':
+    //                 const registerNumber = cy.get('#RegisterNumber');
+    //                 registerNumber.clear().click().type(value);
+    //                 break;
+    //             case 'save':
+    //                 cy.contains('ورود به سامانه').click();
+    //                 cy.wait(1000);
+    //                 break;
+    //         }
+    //     }
+    // },
+    loginUserWithDynamicData(inputs) {
         cy.wait(1000);
-        for (const input of inputs) {
-            const {type, value} = input;
 
-            if (!value) continue;
+        const fieldSelectors = {
+            firstName: '#FName',
+            lastName: '#LName',
+            NationalID: '#NationalID',
+            Mobile: '#Mobile',
+            RegisterNumber: '#RegisterNumber',
+        };
 
-            switch (type) {
-                case 'firstName':
-                    cy.get('#FName').clear().click().type(value);
-                    break;
-                case 'lastName':
-                    cy.get('#LName').clear().click().type(value);
-                    break;
-                case 'NationalID':
-                    cy.get('#NationalID').clear().click().type(value);
-                    break;
-                case 'Mobile':
-                    cy.get('#Mobile').clear().click().type(value);
-                    break;
-                case 'RegisterNumber':
-                    cy.get('#RegisterNumber').clear().click().type(value);
-                    break;
-                case 'save':
-                    cy.contains('ورود به سامانه').click();
-                    cy.wait(1000);
-                    break;
+        inputs.forEach(({type, value}) => {
+            if (!value) return;
+
+            if (type === 'save') {
+                cy.contains('ورود به سامانه').click();
+                cy.wait(1000);
+                return;
             }
-        }
+
+            const selector = fieldSelectors[type];
+            if (selector) {
+                const el = cy.get(selector);
+                el.clear().click().type(value);
+                cy.log('typed ' + value + " for " + type)
+            } else {
+                cy.log(`Unknown input type: ${type}`);
+            }
+        });
     },
+
     //برای لاگین از این تابع استفاده می کنیم
     //مقادیر دیتاتیبل به ترتیب در صفحه لاگین پر می شوند
 
+    // loginUser(inputs) {
+    //     cy.wait(2000);
+    //     for (const input of inputs) {
+    //         const type = input.type;
+    //         if (input.value !== '') {
+    //             if (type === 'firstName') {
+    //                 const fName = cy.get('#FName');
+    //                 fName.clear().click().type(input.value);
+    //             }
+    //             if (type === 'lastName') {
+    //                 const lName = cy.get('#LName');
+    //                 lName.clear().click().type(input.value);
+    //             }
+    //             if (type === 'NationalID') {
+    //                 const nationalID = cy.get('#NationalID');
+    //                 nationalID.clear().click().type(input.value);
+    //             }
+    //             if (type === 'Mobile') {
+    //                 const mobile = cy.get('#Mobile');
+    //                 mobile.clear().click().type(input.value);
+    //             }
+    //             if (type === 'RegisterNumber') {
+    //                 const registerNumber = cy.get('#RegisterNumber');
+    //                 registerNumber.clear().click().type(input.value);
+    //             }
+    //             if (type === 'TaxpayerType') {
+    //             }
+    //
+    //             if (type === 'save') {
+    //                 cy.contains('button[type="submit"]', 'ورود').click({force: true});
+    //                 cy.wait(1000); // wait for 1 second after clicking
+    //             }
+    //         }
+    //     }
+    // },
+    // loginUser(inputs) {
+    //     cy.wait(2000);
+    //
+    //     inputs.forEach(({type, value}) => {
+    //         if (value === '') return;
+    //
+    //         switch (type) {
+    //             case 'firstName':
+    //                 cy.get('#FName').clear().click().type(value);
+    //                 break;
+    //
+    //             case 'lastName':
+    //                 cy.get('#LName').clear().click().type(value);
+    //                 break;
+    //
+    //             case 'NationalID':
+    //                 cy.get('#NationalID').clear().click().type(value);
+    //                 break;
+    //
+    //             case 'Mobile':
+    //                 cy.get('#Mobile').clear().click().type(value);
+    //                 break;
+    //
+    //             case 'RegisterNumber':
+    //                 cy.get('#RegisterNumber').clear().click().type(value);
+    //                 break;
+    //
+    //             case 'TaxpayerType':
+    //                 // Add logic here if needed
+    //                 break;
+    //
+    //             case 'save':
+    //                 cy.contains('button[type="submit"]', 'ورود').click({force: true});
+    //                 cy.wait(1000);
+    //                 break;
+    //
+    //             default:
+    //                 cy.log(`Unknown input type: ${type}`);
+    //         }
+    //     });
+    // },
     loginUser(inputs) {
         cy.wait(2000);
-        for (const input of inputs) {
-            const type = input.type;
-            if (input.value != '') {
-                if (type == 'firstName') {
-                    cy.get('#FName').clear().click().type(input.value);
-                }
-                if (type == 'lastName') {
-                    cy.get('#LName').clear().click().type(input.value);
-                }
-                if (type == 'NationalID') {
-                    cy.get('#NationalID').clear().click().type(input.value);
-                }
-                if (type == 'Mobile') {
-                    cy.get('#Mobile').clear().click().type(input.value);
-                }
-                if (type == 'RegisterNumber') {
-                    cy.get('#RegisterNumber').clear().click().type(input.value);
-                }
-                if (type == 'TaxpayerType') {
-                }
 
-                if (type == 'save') {
-                    cy.contains('button[type="submit"]', 'ورود').click({force: true});
-                    cy.wait(1000); // wait for 1 second after clicking
-                }
+        const fieldSelectors = {
+            firstName: '#FName',
+            lastName: '#LName',
+            NationalID: '#NationalID',
+            Mobile: '#Mobile',
+            RegisterNumber: '#RegisterNumber',
+            TaxpayerType: '#TaxpayerType', // Add selector if needed
+        };
+
+        inputs.forEach(({type, value}) => {
+            if (!value) return;
+
+            if (type === 'save') {
+                cy.contains('button[type="submit"]', 'ورود').click({force: true});
+                cy.wait(1000);
+                return;
             }
-        }
+
+            const selector = fieldSelectors[type];
+            if (selector) {
+                const el = cy.get(selector);
+                el.clear().click().type(value);
+                cy.log('typed ' + value + " for " + type);
+            } else {
+                cy.log(`Unknown input type: ${type}`);
+            }
+        });
     },
 
     //یک یا چند مقدار در صفحه را انتخاب و بر روی آن کلیک می کند
     select(name) {
-        cy.wait(500).contains(name).click({force: true}); // wait for 0.5 second and click on the element
+        cy.contains(name, {timeout: 500}).click({force: true});
     },
 
     //این تابع دیتاتیبل را به آرایه تبدیل می کند
@@ -120,7 +233,7 @@ export default {
             cy.fixture(subUrlArray[0]).then((platform) => {
                 const url1 = subUrlArray[1] + "";
                 const url2 = subUrlArray[2] + "";
-                if (url1 == "جزئیات" || url1 == "PDF") {
+                if (url1 === "جزئیات" || url1 === "PDF") {
                     cy.get("@ID").then((ID) => {
                         const url_visit = baseurl.url + platform[url1][url2] + ID;
                         cy.wait(2000).visit(url_visit).wait(2000);
@@ -151,16 +264,14 @@ export default {
 
     //بر روی کلید خاصی در صفحه کلیک می کند
     clickButton(name) {
-        cy.get('[type="button"]').contains(name).click({ force: true });
-    },
-    //بر روی کلید خاصی در دیالوگ کلیک می کند
+        cy.get('[type="button"]').contains(name).click({force: true});
+    }, //بر روی کلید خاصی در دیالوگ کلیک می کند
     dialogclickButton(name) {
         cy.get('[role="dialog"]')
             .find('[type="button"]')
             .contains(name)
-            .click({ force: true }); // get all button elements, find one that contains name, and click on it with force option
-    },
-    //نام یک فیلد از جنس تارخ را میگیرد
+            .click({force: true}); // get all button elements, find one that contains name, and click on it with force option
+    }, //نام یک فیلد از جنس تارخ را میگیرد
     //و مقدار ورودی تاریخ را می گیرد
     //تاریخ با تابع split
     //به روز و ماه و سال تبدیل می شود
@@ -212,20 +323,7 @@ export default {
 
     // تابع انتخاب تاریخ بالا برای سال مشکل داشت. تغییرات اعمال شد اما تابع قبلی برای اطمینان پاک نشد و تنها کامنت شد
     selectDate(labelText, date) {
-        const months = [
-            "فروردین",
-            "اردیبهشت",
-            "خرداد",
-            "تیر",
-            "مرداد",
-            "شهریور",
-            "مهر",
-            "آبان",
-            "آذر",
-            "دی",
-            "بهمن",
-            "اسفند",
-        ];
+        const months = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند",];
 
         const [year, monthNum, day] = date.split("/");
         const expectedMonth = months[Number(monthNum) - 1];
@@ -266,48 +364,43 @@ export default {
         cy.contains(name).click({force: true});
         cy.wait(3000);
         cy.get('body', {timeout: 5000}).then(($element) => {
-            if (Cypress.$('#notices-drawer').is(':hidden')){
+            if (Cypress.$('#notices-drawer').is(':hidden')) {
                 cy.log("`PopUp not found on the page, skipping selection.`");
-            }
-            else if (Cypress.$('#notices-drawer').is(':visible')){
+            } else if (Cypress.$('#notices-drawer').is(':visible')) {
                 cy.contains(button).click()
-            }
-            else {
+            } else {
                 cy.log("`PopUp not found on the page, skipping selection.`");
             }
         });
-    },
-    //برای بررسی عدم وجود یک کلمه خاص داخل صفحه طراحی شده و در واقع متغییری که به عنوان ورودی وارد کرده اید را داخل صفحه جستجو می کند
+    }, //برای بررسی عدم وجود یک کلمه خاص داخل صفحه طراحی شده و در واقع متغییری که به عنوان ورودی وارد کرده اید را داخل صفحه جستجو می کند
     // در صورت عدم وجود با موفقیت به مرحل هبعد می رود و در صورت وجود متغییر داخل صفحه با خطا مواجه می شود.
     NotContains(name) {
         cy.get('body').should('not.contain', name);
     },
 
 
-
     // کلیک برای باز شدن لیست دان و تایپ گزینه مورد نظر
     selectFromDropdown(optionText) {
-        cy.get('input[role="combobox"]').click({ force: true });
+        cy.get('input[role="combobox"]').click({force: true});
         //  تایپ کردن نام گزینه مورد نظر
-        cy.get('input[role="combobox"]').type(optionText, { delay: 100 });
-        cy.get('ul[role="listbox"] li').contains(optionText).click({ force: true });
+        cy.get('input[role="combobox"]').type(optionText, {delay: 100});
+        cy.get('ul[role="listbox"] li').contains(optionText).click({force: true});
     },
 
 
-
     // برای تایپ یک مقدار در تکستباکس
-    typevalueByLabel(label, value) {
-        const finalValue = (typeof value === 'string' && value.startsWith('$'))
-            ? Cypress.env(value.slice(1))
-            : value;
+    typeValueByLabel(label, value) {
+        const finalValue = (typeof value === 'string' && value.startsWith('$')) ? Cypress.env(value.slice(1)) : value;
 
         cy.contains('label', label)
             .then(($label) => {
                 const id = $label.attr('for');
                 if (id) {
-                    cy.get(`[id="${id}"]`).clear().type(finalValue);
+                    const el = cy.get(`[id="${id}"]`);
+                    el.clear().type(finalValue);
                 } else {
-                    cy.wrap($label).parent().find('input').clear().type(finalValue);
+                    const el = cy.wrap($label);
+                        el.parent().find('input').clear().type(finalValue);
                 }
             });
     },
@@ -318,7 +411,6 @@ export default {
         cy.get('input[name=invoiceTaxId]').clear();
         cy.get('input[name=invoiceTaxId]').type(tax)
     },
-
 
 
     clickFirstTaxID(tax) {
@@ -333,8 +425,7 @@ export default {
         cy.url().then((url) => {
             expect(url.toLowerCase()).to.include(myText.toLowerCase());
         });
-    },
-    checkURLNotToContain(myText) {
+    }, checkURLNotToContain(myText) {
         cy.url().then((url) => {
             expect(url.toLowerCase()).not.to.include(myText.toLowerCase());
         });
@@ -348,7 +439,7 @@ export default {
                 let url_visit;
 
                 if (url1 === "جزئیات" || url1 === "PDF") {
-                    return cy.get("@ID",{timeout:5000}).then((ID) => {
+                    return cy.get("@ID", {timeout: 5000}).then((ID) => {
                         url_visit = `${baseurl.url}${platform[url1][url2]}${ID}`;
                         return cy.intercept(method, url_visit);
                     });
@@ -366,8 +457,8 @@ export default {
             .should('eq', statusCode)
     },
 
-    clickOnBody(){
-        return cy.get("body").click(0,0)
+    clickOnBody() {
+        return cy.get("body").click(0, 0)
     },
 
 

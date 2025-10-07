@@ -1,5 +1,29 @@
-import {When, Then, Given} from "@badeball/cypress-cucumber-preprocessor";
+import {When, Then, Given, Before} from "@badeball/cypress-cucumber-preprocessor";
 import commonFunctions from "../../e2e/common/common-functions";
+
+Before({tags: '@manager-login'}, () => {
+    cy.fixture('users').then((users) => {
+        const manager = users.manager;
+        const userDataTable = [
+            {type: 'NationalID', value: manager.NationalID},
+            {type: 'save', value: manager.save.toString()},
+        ];
+        commonFunctions.firstVisit();
+        commonFunctions.loginUser(userDataTable);
+    });
+})
+
+Before({tags: '@employee-login'}, () => {
+    cy.fixture('users').then((users) => {
+        const employee = users.employee;
+        const userDataTable = [
+            {type: 'NationalID', value: employee.NationalID},
+            {type: 'save', value: employee.save.toString()},
+        ];
+        commonFunctions.firstVisit();
+        commonFunctions.loginUser(userDataTable);
+    });
+})
 
 When("goto {string}", (url) => {
     commonFunctions.visit(url);
@@ -10,8 +34,10 @@ Given("I open web site", () => {
 });
 
 When('Login by employee username', () => {
-    cy.get('#FName').clear().click().type('sample');
-    cy.get('button[type="submit"]',{timeout:5000}).click();
+    const fname = cy.get('#FName');
+    fname.clear();
+    fname.click().type('sample');
+    cy.get('button[type="submit"]', {timeout: 5000}).click();
 })
 
 Then('loginUserByIndex {int} with data', (userIndex, dataTable) => {
@@ -27,7 +53,7 @@ Then('loginUserByIndex {int} with data', (userIndex, dataTable) => {
     });
     console.log('✅ commonFunction loaded:', commonFunction);
 
-    return commonFunctions.loginUserwithdynamicdata(inputs);
+    return commonFunctions.loginUserWithDynamicData(inputs);
 })
 
 //common-function.js
@@ -38,6 +64,6 @@ Then('loginUser', dataTable => {
     commonFunctions.loginUser(result);
 });
 
-When('draft',()=>{
-    cy
+When('draft', () => {
+    cy.get('button');
 })

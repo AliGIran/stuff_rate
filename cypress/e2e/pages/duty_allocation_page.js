@@ -78,7 +78,7 @@ class DutyAllocationPage {
     }
 
     // کاربر تخصیص دهنده
-    supervisorApprovalElement() {
+    employeeApprovalElement() {
         return cy.get('[name="ControlDropDownList_046c460c95bc_c08393"]', {timeout: 2000})
     }
 
@@ -126,7 +126,7 @@ class DutyAllocationPage {
     // actions ******************************************************************************
 
     checkDropDownLabel(el, label) {
-        el.children().find('label', {timeout: 2000})
+        el.children().find(label, {timeout: 2000})
     }
 
     typeInDropDown(el, text) {
