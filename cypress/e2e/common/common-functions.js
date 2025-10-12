@@ -382,14 +382,17 @@ export default {
         cy.get('body').should('not.contain', name);
     },
 
-
     // کلیک برای باز شدن لیست دان و تایپ گزینه مورد نظر
     selectFromDropdown(element, optionText) {
         element.click({force: true});
-        element.children().find('input').type(optionText, {delay: 150});
-        dutyAllocations.comboList().children().contains(optionText).click({force: true});
+        element.children()
+            .find('input')
+            .type(optionText, {delay: 150});
+        dutyAllocations.comboList()
+            .children()
+            .contains(optionText)
+            .click({force: true});
     },
-
 
     // برای تایپ یک مقدار در تکستباکس
     typeValueByLabel(label, value) {

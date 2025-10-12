@@ -2,6 +2,10 @@ class DutyAllocationPage {
 
     // locators ******************************************************************************
 
+    // عنوان صفحه خدمات بدون نرخ
+    dutyAllocationPageTitle(){
+        return cy.get('.style-1s6223d')}
+
     // طبقه‌بندی سطح 1
     level1ClassificationElement() {
         return cy.get('[name="ControlDropDownList_e206d308c0de_c829ab"]', {timeout: 2000})
@@ -127,6 +131,18 @@ class DutyAllocationPage {
             .should("be.visible")
     }
 
+    // تاریخ اجرا
+    implementationDate() {
+        return cy.get('[aria-id="ControlDatePanel_18e11e17e52d_4fe086"]', {timeout: 2000})
+            .should("be.visible")
+    }
+
+    // تاریخ اعمال تغییر
+    dateOfChange() {
+        return cy.get('[aria-id="ControlDatePanel_28ba075f0668_548feb"]', {timeout: 2000})
+            .should("be.visible")
+    }
+
     // حذف فیلتر
     removeFiltersButton() {
         return cy.get('button[aria-id="ControlButton_ca9a8bfabd67_6acb28"][aria-type="BUTTON"]', {timeout: 2000})
@@ -158,18 +174,11 @@ class DutyAllocationPage {
             .should("be.visible")
     }
 
-    // actions ******************************************************************************
 
-    typeInInput(element, myText) {
-        element.type(myText);
-    }
+    // actions ******************************************************************************
 
     checkDropDownLabel(el, label) {
         el.children().find(label, {timeout: 2000})
-    }
-
-    typeInDropDown(el, text) {
-        el.children().find('input', {timeout: 2000}).type(text, {delay: 2000})
     }
 
     clickElement(el) {
@@ -208,6 +217,13 @@ class DutyAllocationPage {
         this.editButton().click({force: true})
     }
 
+    selectFromDropdown(chainable, myText) {
+        return undefined;
+    }
+
+    verifyPageTitle(element, title) {
+        return element.should("contain.text", title);
+    }
 }
 
 // export the object

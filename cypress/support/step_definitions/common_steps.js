@@ -90,15 +90,15 @@ When('user choose {string} from category', (myText) => {
 })
 
 When('user type {string} in description', (myText) => {
-    return commonFunctions.typeInInput(dutyAllocations.titleDescriptionInput(), myText);
+    return dutyAllocations.enterTitleDescription(myText);
 })
 
 When('user type {string} in duty ID', (myText) => {
-    return commonFunctions.typeInInput(dutyAllocations.dutyIdInput(), myText);
+    return dutyAllocations.enterDutyId(myText);
 })
 
 When('user type {string} in duty ID description', (myText) => {
-    return commonFunctions.typeInInput(dutyAllocations.dutyIDDescriptionInput(), myText);
+    return dutyAllocations.enterDutyIDDescription(myText);
 })
 
 When('user click advanced filter button', (myText) => {
@@ -126,7 +126,8 @@ When('user type {string} in tax rate', (myText) => {
 })
 
 When('user choose {string} from legal clause', (myText) => {
-    return dutyAllocations.clickSearchButton();
+    return commonFunctions.selectFromDropdown(dutyAllocations.legalClauseElement(), myText);
+
 })
 
 When('user choose {string} from supervisor approval', (myText) => {
@@ -150,9 +151,20 @@ When('user choose {string} from مشمولیت', (myText) => {
 })
 
 When('user choose {string} for creation date', (myDate) => {
-    return commonFunctions.typeInInput(dutyAllocations.creationDate(),myDate);
+    return commonFunctions.typeInInput(dutyAllocations.creationDate(), myDate);
+})
+
+When('user choose {string} for implementation date', (myDate) => {
+    return commonFunctions.typeInInput(dutyAllocations.implementationDate(), myDate);
+})
+When('user choose {string} for date of change', (myDate) => {
+    return commonFunctions.typeInInput(dutyAllocations.dateOfChange(), myDate);
 })
 
 When('user submit filters', (myDate) => {
     return dutyAllocations.clickSearchButton();
+})
+
+Then('Verify duty allocation page title is {string}',(pageTitle)=>{
+    return dutyAllocations.verifyPageTitle(dutyAllocations.dutyAllocationPageTitle(),pageTitle)
 })
