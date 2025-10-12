@@ -387,10 +387,10 @@ export default {
         element.click({force: true});
         element.children()
             .find('input')
-            .type(optionText, {delay: 150});
+            .type(optionText, {delay: 100});
         dutyAllocations.comboList()
             .children()
-            .contains(optionText)
+            .contains(optionText,{timeout: 5000})
             .click({force: true});
     },
 
@@ -476,7 +476,7 @@ export default {
     },
 
     typeInInput(element, myText) {
-        element.type(myText, {delay: 150});
+        element.type(myText, {delay: 50});
     }
 
 };

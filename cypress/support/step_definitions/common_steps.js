@@ -165,6 +165,20 @@ When('user submit filters', (myDate) => {
     return dutyAllocations.clickSearchButton();
 })
 
-Then('Verify duty allocation page title is {string}',(pageTitle)=>{
-    return dutyAllocations.verifyPageTitle(dutyAllocations.dutyAllocationPageTitle(),pageTitle)
+When('user click clear filter button', (myDate) => {
+    cy.intercept('POST', 'http://stuff-rate.alpha.nta.local/portal-gateway/StuffRate/graphql\n',).as('graphqlCall');
+    dutyAllocations.clickRemoveFiltersButton();
+    cy.wait('@graphqlCall');
+    return this;
 })
+
+Then('Verify duty allocation page title is {string}', (pageTitle) => {
+    return dutyAllocations.verifyPageTitle(dutyAllocations.dutyAllocationPageTitle(), pageTitle)
+})
+
+Then('all text fields should be empty', () => {
+    cy.get('input[type="text"]').each(($input, index) => {
+        const inputSelector = `input[type="text"]:eq(${index})`;
+        cy.get(inputSelector).should('have.value', '');
+    });
+});

@@ -186,7 +186,7 @@ class DutyAllocationPage {
     }
 
     enterTitleDescription(description) {
-        this.titleDescriptionInput().type(description, {delay: 150})
+        this.titleDescriptionInput().type(description, {delay: 50})
     }
 
     enterDutyId(id) {
@@ -194,7 +194,7 @@ class DutyAllocationPage {
     }
 
     enterDutyIDDescription(description) {
-        this.dutyIDDescriptionInput().type(description, {delay: 150})
+        this.dutyIDDescriptionInput().type(description, {delay: 50})
     }
 
     clickLicencedCheckbox() {
