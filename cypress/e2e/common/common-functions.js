@@ -331,10 +331,12 @@ export default {
         const expectedMonth = months[Number(monthNum) - 1];
         const expectedYear = year;
 
-        cy.contains(labelText)
-            .parent("div")
-            .find("input")
-            .click({force: true});
+        // cy.contains(labelText)
+        //     .parent("div")
+        //     .find("input")
+        //     .click({force: true});
+
+        labelText.click({force: true});
 
         const ensureMonthYear = () => {
             cy.get(".MuiPickersCalendarHeader-label")

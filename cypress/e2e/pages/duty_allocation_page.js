@@ -122,7 +122,7 @@ class DutyAllocationPage {
     }
 
     // تاریخ ایجاد
-    dateOfCreationElement() {
+    creationDate() {
         return cy.get('[aria-id="ControlDatePanel_e89b585eedc7_51f520"]', {timeout: 2000})
             .should("be.visible")
     }
@@ -135,7 +135,8 @@ class DutyAllocationPage {
 
     // جستجو
     searchButton() {
-        return cy.get('button[aria-id="ControlButton_7aec8e5659c5_4e227e"][aria-type="BUTTON"]', {timeout: 2000})
+        // return cy.get('button[aria-id="ControlButton_7aec8e5659c5_4e227e"][aria-type="BUTTON"]', {timeout: 2000})
+        return cy.get('.style-1hnc5um > .MuiButton-contained')
             .should("be.visible")
     }
 
