@@ -228,9 +228,9 @@ class DutyAllocationPage {
         this.editButton().click({force: true})
     }
 
-    selectFromDropdown(chainable, myText) {
-        return undefined;
-    }
+    // selectFromDropdown(chainable, myText) {
+    //     return undefined;
+    // }
 
     verifyPageTitle(element, title) {
         return element.should("contain.text", title);

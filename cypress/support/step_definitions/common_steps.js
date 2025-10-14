@@ -106,7 +106,7 @@ When('user type {string} in duty ID description', (myText) => {
     return dutyAllocations.enterDutyIDDescription(myText);
 })
 
-When('user click advanced filter button', (myText) => {
+When('user click advanced filter button', () => {
     return dutyAllocations.clickAdvancedButton();
 })
 
@@ -147,7 +147,7 @@ When('user choose {string} from tags', (myText) => {
     return commonFunctions.typeInInput(dutyAllocations.tagsElement(), myText);
 })
 
-When('user click licenced checkbox', (myText) => {
+When('user click licenced checkbox', () => {
     return dutyAllocations.clickLicencedCheckbox()
 })
 
@@ -166,11 +166,11 @@ When('user choose {string} for date of change', (myDate) => {
     return commonFunctions.typeInInput(dutyAllocations.dateOfChange(), myDate);
 })
 
-When('user submit filters', (myDate) => {
+When('user submit filters', () => {
     return dutyAllocations.clickSearchButton();
 })
 
-When('user click clear filter button', (myDate) => {
+When('user click clear filter button', () => {
     cy.intercept('POST', 'http://stuff-rate.alpha.nta.local/portal-gateway/StuffRate/graphql\n',).as('graphqlCall');
     dutyAllocations.clickRemoveFiltersButton();
     cy.wait('@graphqlCall');
