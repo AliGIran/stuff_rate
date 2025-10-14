@@ -169,6 +169,12 @@ class DutyAllocationPage {
             .should("be.visible")
     }
 
+    // تخصیص نرخ ارزش افزوده
+    allocationOfValueAddedRateButton() {
+        return cy.get('button[aria-id="ControlButton_3bbce5057a0d_84ad50"][aria-type="BUTTON"]', {timeout: 2000})
+            .should("be.visible")
+    }
+
     // لیست گزینه
     comboList() {
         return cy.get('[role="presentation"]', {timeout: 2000})
@@ -187,7 +193,7 @@ class DutyAllocationPage {
     }
 
     clickElement(el) {
-        el.click()
+        el.should("be.enabled").click()
     }
 
     enterTitleDescription(description) {
@@ -228,6 +234,14 @@ class DutyAllocationPage {
 
     verifyPageTitle(element, title) {
         return element.should("contain.text", title);
+    }
+
+    sample(element, status) {
+        const text = status.toLowerCase();
+        if (text === 'disable' || text === 'enable') {
+            return element.should(`be.${text}d`);
+        }
+        throw new Error("❌ Invalid status: must be 'disable' or 'enable'");
     }
 }
 

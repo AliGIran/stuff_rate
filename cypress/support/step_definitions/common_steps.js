@@ -183,6 +183,24 @@ Then('all text fields should be empty', () => {
     });
 });
 
+Then('verify edit and allocation added value rate are disabled', () => {
+    dutyAllocations.sample(dutyAllocations.editButton(), 'disable')
+    dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
+})
+
+Then('verify edit and allocation added value rate are disabled', () => {
+    dutyAllocations.sample(dutyAllocations.editButton(), 'disable')
+    dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
+})
+
+Then('verify {string} is {string}', (element, status) => {
+    const el = cy.contains(element)
+    dutyAllocations.sample(el, status)
+
+
+    // dutyAllocations.sample(dutyAllocations.editButton(),'disable')
+    // dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(),'disable')
+})
 
 Then('Check the existence of table items number', () => {
     dutyAllocations.itemNumberCombobox();
