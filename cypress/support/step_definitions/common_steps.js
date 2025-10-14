@@ -29,7 +29,12 @@ Before({tags: '@employee-login'}, () => {
 Then('wait {int}', (millisecond) => cy.wait(millisecond));
 
 When("goto {string}", (url) => {
+
+
     return commonFunctions.visit(url);
+
+
+
 });
 
 Given("I open web site", () => {
@@ -184,22 +189,23 @@ Then('all text fields should be empty', () => {
 });
 
 Then('verify edit and allocation added value rate are disabled', () => {
-    dutyAllocations.sample(dutyAllocations.editButton(), 'disable')
-    dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
+    dutyAllocations.checkElementStatus(dutyAllocations.editButton(), 'disable')
+    dutyAllocations.checkElementStatus(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
 })
 
 Then('verify edit and allocation added value rate are disabled', () => {
-    dutyAllocations.sample(dutyAllocations.editButton(), 'disable')
-    dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
+    dutyAllocations.checkElementStatus(dutyAllocations.editButton(), 'disable')
+    dutyAllocations.checkElementStatus(dutyAllocations.allocationOfValueAddedRateButton(), 'disable')
 })
 
 Then('verify {string} is {string}', (element, status) => {
     const el = cy.contains(element)
-    dutyAllocations.sample(el, status)
+    dutyAllocations.checkElementStatus(el, status)
+})
 
-
-    // dutyAllocations.sample(dutyAllocations.editButton(),'disable')
-    // dutyAllocations.sample(dutyAllocations.allocationOfValueAddedRateButton(),'disable')
+Then('verify {string} button is {string}', (element, status) => {
+    const el = cy.get('button').contains(element);
+    dutyAllocations.checkElementStatus(el, status)
 })
 
 Then('Check the existence of table items number', () => {

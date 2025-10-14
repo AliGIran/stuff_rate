@@ -236,7 +236,7 @@ class DutyAllocationPage {
         return element.should("contain.text", title);
     }
 
-    sample(element, status) {
+    checkElementStatus(element, status) {
         const text = status.toLowerCase();
         if (text === 'disable' || text === 'enable') {
             return element.should(`be.${text}d`);

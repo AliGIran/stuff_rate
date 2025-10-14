@@ -33,6 +33,13 @@ Feature:  Stuff rate - Duty allocation
 
     Then user submit filters
     And Check the existence of table items number
+    Then verify 'حذف فیلتر' button is 'enable'
+    Then verify 'جستجو' button is 'enable'
+    Then verify 'ویرایش' button is 'disable'
+    Then verify 'تایید' button is 'disable'
+    Then verify 'برگشت به کارشناس' button is 'disable'
+    Then verify 'تخصیص نرخ ارزش افزوده' button is 'disable'
+
 
 
 
@@ -66,3 +73,7 @@ Feature:  Stuff rate - Duty allocation
 
     Then user submit filters
     And Check the existence of table items number
+    Then verify 'حذف فیلتر' button is 'enable'
+    Then verify 'جستجو' button is 'enable'
+    Then verify 'ویرایش' button is 'disable'
+    Then verify 'تخصیص نرخ ارزش افزوده' button is 'disable'
