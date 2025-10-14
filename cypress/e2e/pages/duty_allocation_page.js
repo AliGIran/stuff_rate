@@ -3,8 +3,9 @@ class DutyAllocationPage {
     // locators ******************************************************************************
 
     // عنوان صفحه خدمات بدون نرخ
-    dutyAllocationPageTitle(){
-        return cy.get('.style-1s6223d')}
+    dutyAllocationPageTitle() {
+        return cy.get('.style-1s6223d')
+    }
 
     // طبقه‌بندی سطح 1
     level1ClassificationElement() {
@@ -174,6 +175,10 @@ class DutyAllocationPage {
             .should("be.visible")
     }
 
+    itemNumberCombobox() {
+        return cy.get('.app-pagination-container', {timeout: 20000}).children()
+            .should("exist")
+    }
 
     // actions ******************************************************************************
 

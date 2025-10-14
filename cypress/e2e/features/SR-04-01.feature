@@ -32,6 +32,7 @@ Feature:  Stuff rate - Duty allocation
     And user choose '1404/02/31' for creation date
 
     Then user submit filters
+    And Check the existence of table items number
 
 
 
@@ -64,3 +65,4 @@ Feature:  Stuff rate - Duty allocation
     And user choose '1404/02/31' for creation date
 
     Then user submit filters
+    And Check the existence of table items number

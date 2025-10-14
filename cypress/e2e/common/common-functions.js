@@ -477,6 +477,10 @@ export default {
 
     typeInInput(element, myText) {
         element.type(myText, {delay: 50});
+    },
+
+    checkElementExists(element) {
+      cy.get(element).should('exist');
     }
 
 };

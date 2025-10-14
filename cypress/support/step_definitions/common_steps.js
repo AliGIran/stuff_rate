@@ -182,3 +182,10 @@ Then('all text fields should be empty', () => {
         cy.get(inputSelector).should('have.value', '');
     });
 });
+
+
+Then('Check the existence of table items number', () => {
+    dutyAllocations.itemNumberCombobox();
+    dutyAllocations.itemNumberCombobox().should("be.visible");
+    return this;
+})
