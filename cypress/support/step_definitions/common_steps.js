@@ -213,6 +213,10 @@ Then('Check the existence of table items number', () => {
     dutyAllocations.itemNumberCombobox().should("be.visible");
     return this;
 })
+Then('The title should be {string}', (title) => {
+    return cy.title().should("eq", title);
+})
+
 Then('Verify copyright message', () => {
     return cy.get('label')
         .should('contain.text', '© کلیه حقوق این سامانه متعلق به سازمان امور مالیاتی کشور می‌باشد.');
