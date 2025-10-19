@@ -15,7 +15,7 @@ Feature:  Stuff rate - Duty allocation
     And user choose 'تراکنش مبادله نقطه' from level 4 classification
     And user choose 'خدمات پرداخت' from category
     And user type 'توضیحات شرح سرفصل' in description
-    And user type '1234567891230' in duty ID
+    And user type '11234567891230' in duty ID
     And user type 'شرح شناسه خدمت مد نظر' in duty ID description
     And user click advanced filter button
     And user choose 'غیرفعال' from status
@@ -30,9 +30,9 @@ Feature:  Stuff rate - Duty allocation
     And user click licenced checkbox
     And user choose 'معاف' from مشمولیت
     And user choose '1404/02/31' for creation date
+    And user submit filters
 
-    Then user submit filters
-    And Check the existence of table items number
+    Then Check the existence of table items number
     And verify 'حذف فیلتر' button is 'enable'
     And verify 'جستجو' button is 'enable'
     And verify 'ویرایش' button is 'disable'
@@ -53,7 +53,7 @@ Feature:  Stuff rate - Duty allocation
     And user choose 'تراکنش مبادله نقطه' from level 4 classification
     And user choose 'خدمات پرداخت' from category
     And user type 'توضیحات شرح سرفصل' in description
-    And user type '1234567891230' in duty ID
+    And user type '11234567891230' in duty ID
     And user type 'شرح شناسه خدمت مد نظر' in duty ID description
     And user click advanced filter button
     And user choose 'غیرفعال' from status
@@ -68,9 +68,9 @@ Feature:  Stuff rate - Duty allocation
     And user click licenced checkbox
     And user choose 'معاف' from مشمولیت
     And user choose '1404/02/31' for creation date
+    And user submit filters
 
-    Then user submit filters
-    And Check the existence of table items number
+    Then Check the existence of table items number
     And verify 'حذف فیلتر' button is 'enable'
     And verify 'جستجو' button is 'enable'
     And verify 'ویرایش' button is 'disable'
