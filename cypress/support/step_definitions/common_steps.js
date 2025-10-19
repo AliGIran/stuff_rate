@@ -29,12 +29,7 @@ Before({tags: '@employee-login'}, () => {
 Then('wait {int}', (millisecond) => cy.wait(millisecond));
 
 When("goto {string}", (url) => {
-
-
     return commonFunctions.visit(url);
-
-
-
 });
 
 Given("I open web site", () => {
@@ -200,19 +195,26 @@ Then('verify edit and allocation added value rate are disabled', () => {
 
 Then('verify {string} is {string}', (element, status) => {
     const el = cy.contains(element)
-    dutyAllocations.checkElementStatus(el, status)
+    return dutyAllocations.checkElementStatus(el, status)
 })
 
 Then('verify {string} button is {string}', (element, status) => {
     const el = cy.get('button').contains(element);
-    dutyAllocations.checkElementStatus(el, status)
+    return dutyAllocations.checkElementStatus(el, status)
 })
 
 Then('Check the existence of table items number', () => {
-    dutyAllocations.itemNumberCombobox();
-    dutyAllocations.itemNumberCombobox().should("be.visible");
-    return this;
+    return dutyAllocations.itemNumberCombobox();
 })
+
+When('Choose {int} for number of rows in the table', (number) => {
+    return dutyAllocations.chooseNumberOfTableRows(number);
+})
+
+Then('The number of table rows should be {int}', (rows) => {
+    return dutyAllocations.tableRowsShouldBe(rows);
+})
+
 Then('The title should be {string}', (title) => {
     return cy.title().should("eq", title);
 })

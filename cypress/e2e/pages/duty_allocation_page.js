@@ -182,7 +182,7 @@ class DutyAllocationPage {
     }
 
     itemNumberCombobox() {
-        return cy.get('.app-pagination-container', {timeout: 20000}).children()
+        return cy.get('.app-pagination-container', {timeout: 2000})
             .should("exist")
     }
 
@@ -228,9 +228,11 @@ class DutyAllocationPage {
         this.editButton().click({force: true})
     }
 
-    // selectFromDropdown(chainable, myText) {
-    //     return undefined;
-    // }
+    chooseNumberOfTableRows(numberOfRows) {
+        this.itemNumberCombobox().click()
+        cy.get(`ul[role="listbox"] li[data-value="${numberOfRows}"]`)
+            .click();
+    }
 
     verifyPageTitle(element, title) {
         return element.should("contain.text", title);
@@ -243,6 +245,16 @@ class DutyAllocationPage {
         }
         throw new Error("❌ Invalid status: must be 'disable' or 'enable'");
     }
+    tableRowsShouldBe(expectedCount) {
+        const expectedLastRowId = `row-${expectedCount - 1}`;
+
+        cy.get('[role="table"] [role="row"]')
+            .last()
+            .should('have.id', expectedLastRowId);
+    }
+
+
+
 }
 
 // export the object
